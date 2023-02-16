@@ -1,6 +1,7 @@
 package com.berka.springbootlibrarymanagement.service;
 
 import com.berka.springbootlibrarymanagement.dao.UserDAO;
+import com.berka.springbootlibrarymanagement.entity.Book;
 import com.berka.springbootlibrarymanagement.entity.User;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class UserServiceImplementation implements UserService {
     @Transactional
     public void deleteById(int theId) {
         userDAO.deleteById(theId);
+    }
+
+    @Override
+    @Transactional
+    public List<Book> findBooksByUserId(int id) {
+        return userDAO.findBooksByUserId(id);
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @JsonIgnore
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH,
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
@@ -81,6 +82,17 @@ public class User {
 
     public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
+    }
+
+    public void addBook(Book book) {
+
+        if (bookList == null) {
+            bookList = new ArrayList<>();
+        }
+        else {
+            bookList.add(book);
+
+        }
     }
 
     @Override

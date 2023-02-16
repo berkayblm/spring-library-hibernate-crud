@@ -2,7 +2,6 @@ package com.berka.springbootlibrarymanagement.rest;
 
 import com.berka.springbootlibrarymanagement.entity.Book;
 import com.berka.springbootlibrarymanagement.entity.User;
-import com.berka.springbootlibrarymanagement.service.BookService;
 import com.berka.springbootlibrarymanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +15,11 @@ import java.util.List;
 public class UserRestController {
 
     private UserService userService;
-    private BookService bookService;
+
 
     @Autowired
-    public UserRestController(UserService userService, BookService bookService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
-        this.bookService = bookService;
     }
 
     // get  /users
@@ -79,7 +77,7 @@ public class UserRestController {
     }
 
     //todo:  get all books for a user , by given user id
-/*
+
     @GetMapping("/users/{userId}/books")
     public ResponseEntity<List<Book>> getAllBooksByUserId(
             @PathVariable int userId) {
@@ -89,11 +87,12 @@ public class UserRestController {
 
         }
 
-        List<Book> books = bookService.findById(userId);
-
+        List<Book> books = userService.findBooksByUserId(userId);
+        for (Book b : books) {
+            System.out.println(b);
+        }
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
-dassd
-*/
+
 
 }

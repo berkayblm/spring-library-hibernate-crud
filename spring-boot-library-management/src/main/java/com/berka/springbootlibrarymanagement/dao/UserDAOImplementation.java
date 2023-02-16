@@ -1,6 +1,7 @@
 package com.berka.springbootlibrarymanagement.dao;
 
 
+import com.berka.springbootlibrarymanagement.entity.Book;
 import com.berka.springbootlibrarymanagement.entity.User;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
@@ -64,6 +65,18 @@ public class UserDAOImplementation implements UserDAO {
 
         query.setParameter("userId", theId);
         query.executeUpdate();
+    }
+
+    @Override
+    public List<Book> findBooksByUserId(int id) {
+
+        User user = entityManager.find(User.class, id);
+
+        List<Book> books = user.getBookList();
+
+        return books;
+
+
     }
 
     private Session createSession() {
