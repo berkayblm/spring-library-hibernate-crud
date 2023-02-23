@@ -37,14 +37,18 @@ public class Book {
     )
     private List<User> userList;
 
+    @Column(name = "photo_path")
+    private String photoPath;
+
 
     public Book() {}
 
-    public Book(String bookName, String title, int pages, String link) {
+    public Book(String bookName, String title, int pages, String link, String photoPath) {
         this.bookName = bookName;
         this.title = title;
         this.pages = pages;
         this.link = link;
+        this.photoPath = photoPath;
     }
 
     public int getId() {
@@ -93,6 +97,14 @@ public class Book {
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     private void addUser(User theUser) {

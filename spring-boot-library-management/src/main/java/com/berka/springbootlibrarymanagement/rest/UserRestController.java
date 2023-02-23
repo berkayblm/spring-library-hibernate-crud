@@ -88,9 +88,7 @@ public class UserRestController {
         }
 
         List<Book> books = userService.findBooksByUserId(userId);
-        for (Book b : books) {
-            System.out.println(b);
-        }
+
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
