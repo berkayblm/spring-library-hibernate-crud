@@ -22,7 +22,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    // get  /users
+    // get all users
     @GetMapping("/users")
     public List<User> findAll() {
 
@@ -91,6 +91,8 @@ public class UserRestController {
 
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
+
+    // todo: remove the book for a user
 
 
 }
