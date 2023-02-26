@@ -17,4 +17,6 @@ public interface UserService {
 
     List<Book> findBooksByUserId(int id);
 
+    void deleteBookForUser(List<Book> books, int bookId);
+
 }

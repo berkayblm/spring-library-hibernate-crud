@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -76,7 +77,7 @@ public class UserRestController {
         return "Deleted user id + " + userId;
     }
 
-    //todo:  get all books for a user , by given user id
+    // get all books for a user , by given user id
 
     @GetMapping("/users/{userId}/books")
     public ResponseEntity<List<Book>> getAllBooksByUserId(
@@ -92,7 +93,26 @@ public class UserRestController {
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    // todo: remove the book for a user
+    // remove book for user
+    @DeleteMapping("/users/{userId}/{bookId}")
+    public String  deleteBookForUser(@PathVariable int userId,
+                                                  @PathVariable int bookId) {
 
+        if (userService.findById(userId) == null) {
+            throw new RuntimeException("User id : " + userId + " not found.");
+        }
+
+        // get the list of books for the user by given user id
+        List<Book> books = userService.findBooksByUserId(userId);
+
+        // delete the book
+
+        userService.deleteBookForUser(books, bookId);
+
+        // save the user
+        userService.save(userService.findById(userId));
+
+        return "Deleted Book Id : " + bookId;
+    }
 
 }

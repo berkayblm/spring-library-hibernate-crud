@@ -50,4 +50,10 @@ public class UserServiceImplementation implements UserService {
     public List<Book> findBooksByUserId(int id) {
         return userDAO.findBooksByUserId(id);
     }
+
+    @Override
+    @Transactional
+    public void deleteBookForUser(List<Book> books, int bookId) {
+        userDAO.deleteBookForUser(books, bookId);
+    }
 }

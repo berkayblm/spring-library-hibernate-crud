@@ -1,6 +1,5 @@
 package com.berka.springbootlibrarymanagement.dao;
 
-
 import com.berka.springbootlibrarymanagement.entity.Book;
 import com.berka.springbootlibrarymanagement.entity.User;
 import jakarta.persistence.EntityManager;
@@ -9,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -76,8 +76,23 @@ public class UserDAOImplementation implements UserDAO {
 
         return books;
 
+    }
+
+    @Override
+    public void deleteBookForUser(List<Book> books, int bookId) {
+
+        List<Book> bookList = books;
+
+        // remove that book from the list
+        for (Iterator<Book> iterator = bookList.listIterator(); iterator.hasNext(); ) {
+            Book tempBook = iterator.next();
+            if (tempBook.getId() == bookId) {
+                iterator.remove();
+            }
+        }
 
     }
+
 
     private Session createSession() {
         Session session = entityManager.unwrap(Session.class);
