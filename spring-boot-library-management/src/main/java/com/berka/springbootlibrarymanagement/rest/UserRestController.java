@@ -2,6 +2,7 @@ package com.berka.springbootlibrarymanagement.rest;
 
 import com.berka.springbootlibrarymanagement.entity.Book;
 import com.berka.springbootlibrarymanagement.entity.User;
+import com.berka.springbootlibrarymanagement.exception.UserNotFoundException;
 import com.berka.springbootlibrarymanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class UserRestController {
         User user = userService.findById(userId);
 
         if (user == null) {
-            throw new RuntimeException("User id not found " + userId);
+            throw new UserNotFoundException("User id not found " + userId);
 
         }
 
@@ -69,7 +70,7 @@ public class UserRestController {
         User user = userService.findById(userId);
 
         if (user == null) {
-            throw new RuntimeException("User id not found " + userId);
+            throw new UserNotFoundException("User id not found " + userId);
         }
 
         userService.deleteById(userId);
@@ -83,8 +84,9 @@ public class UserRestController {
     public ResponseEntity<List<Book>> getAllBooksByUserId(
             @PathVariable int userId) {
 
+
         if (userService.findById(userId) == null) { // if the given user id not exist
-            throw new RuntimeException("User id : " + userId + " not found.");
+            throw new UserNotFoundException("User id : " + userId + " not found.");
 
         }
 
@@ -99,7 +101,7 @@ public class UserRestController {
                                                   @PathVariable int bookId) {
 
         if (userService.findById(userId) == null) {
-            throw new RuntimeException("User id : " + userId + " not found.");
+            throw new UserNotFoundException("User id : " + userId + " not found.");
         }
 
         // get the list of books for the user by given user id

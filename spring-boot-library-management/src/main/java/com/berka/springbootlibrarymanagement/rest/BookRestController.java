@@ -79,7 +79,7 @@ public class BookRestController {
         return "Deleted book id + " + bookId;
     }
 
-    // todo : add book for a given user id
+    //  add book for a given user id
     @PostMapping("/books/{userId}/{bookId}")
     public ResponseEntity<User> addBookForUser(
             @PathVariable int userId,
@@ -107,9 +107,6 @@ public class BookRestController {
 
 
     }
-
-
-
 
 
 }
