@@ -34,3 +34,7 @@ In order your app to run properly, you must run this project behind so that the 
 ![image](https://user-images.githubusercontent.com/73589879/222130999-3450f984-714b-40b3-8163-06c387dd33e7.png)
 
 
+## Did you find this repository helpful?
+Do not forget to give a start
+## Didn't you?
+Then fork this repo, make it BETTER and do not forget to give a STAR
